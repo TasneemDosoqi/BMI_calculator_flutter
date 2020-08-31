@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'input_page.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() => runApp(BMICalculator());
 

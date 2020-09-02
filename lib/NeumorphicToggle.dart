@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:flutter/widgets.dart';
+
+
 class NeumorphicToggle extends StatelessWidget {
   static const MIN_EMBOSS_DEPTH = -1.0;
 
@@ -178,4 +181,15 @@ class NeumorphicToggle extends StatelessWidget {
       this.onChanged(newValue);
     }
   }
+}
+
+
+class ToggleElement {
+  final Widget background;
+  final Widget foreground;
+
+  ToggleElement({
+    this.background,
+    this.foreground,
+  });
 }

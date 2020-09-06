@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/ReusableCard.dart';
+import 'result_page.dart';
 
 const Color blue = Color(0xff54D1DC);
 const Color white = Colors.white;
@@ -19,6 +20,8 @@ class _InputPageState extends State<InputPage> {
   Color MColor;
   Color FColor;
   int _selectedIndex = 0;
+  int weight =60;
+  int age =30;
 
   @override
   Widget build(BuildContext context) {
@@ -174,7 +177,7 @@ class _InputPageState extends State<InputPage> {
               flex: 2,
               child: ReusableCard(
                 chardChild: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     TitleStyle(context,"Height"),
                     Padding(
@@ -216,10 +219,122 @@ class _InputPageState extends State<InputPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Expanded(
-                    child: ReusableCard(),
+                    child: ReusableCard(
+                      chardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          TitleStyle(context,"Weight"),
+                          Text(
+                            weight.toString(),
+                            style: TextStyle(
+                              fontSize: 50,
+                              color: _textColor(context),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              NeumorphicButton(
+                                margin: EdgeInsets.all(10),
+                                onPressed: () {
+                                  setState(() {
+                                    weight--;
+                                  });
+                                },
+                                style: NeumorphicStyle(
+                                  shape: NeumorphicShape.flat,
+                                  boxShape: NeumorphicBoxShape.circle(),
+                                ),
+                                padding: const EdgeInsets.all(10.0),
+                                child: Icon(
+                                  Icons.remove,
+                                  color: _iconsColor(context),
+                                ),
+                              ),
+                              NeumorphicButton(
+                                margin: EdgeInsets.all( 10),
+                                onPressed: () {
+                                  setState(() {
+                                    weight++;
+                                  });
+                                },
+                                style: NeumorphicStyle(
+                                  shape: NeumorphicShape.flat,
+                                  boxShape: NeumorphicBoxShape.circle(),
+                                ),
+                                padding: const EdgeInsets.all(10.0),
+                                child: Icon(
+                                  Icons.add,
+                                  color: _iconsColor(context),
+                                ),
+                              ),
+
+                            ],
+                          )
+
+                        ],
+                      ),
+                    ),
                   ),
                   Expanded(
-                    child: ReusableCard(),
+                    child: ReusableCard(
+                      chardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          TitleStyle(context,"Weight"),
+                          Text(
+                            age.toString(),
+                            style: TextStyle(
+                              fontSize: 50,
+                              color: _textColor(context),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              NeumorphicButton(
+                                margin: EdgeInsets.all(10),
+                                onPressed: () {
+                                  setState(() {
+                                    age--;
+                                  });
+                                },
+                                style: NeumorphicStyle(
+                                  shape: NeumorphicShape.flat,
+                                  boxShape: NeumorphicBoxShape.circle(),
+                                ),
+                                padding: const EdgeInsets.all(10.0),
+                                child: Icon(
+                                  Icons.remove,
+                                  color: _iconsColor(context),
+                                ),
+                              ),
+                              NeumorphicButton(
+                                margin: EdgeInsets.all( 10),
+                                onPressed: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                },
+                                style: NeumorphicStyle(
+                                  shape: NeumorphicShape.flat,
+                                  boxShape: NeumorphicBoxShape.circle(),
+                                ),
+                                padding: const EdgeInsets.all(10.0),
+                                child: Icon(
+                                  Icons.add,
+                                  color: _iconsColor(context),
+                                ),
+                              ),
+
+                            ],
+                          )
+
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -230,7 +345,9 @@ class _InputPageState extends State<InputPage> {
                 horizontal: 130,
               ),
               margin: EdgeInsets.all(15),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>ResultPage()));
+              },
               duration: Duration(microseconds: 1),
               style: NeumorphicStyle(
                 color: Color(0xff54D1DC),
@@ -241,8 +358,10 @@ class _InputPageState extends State<InputPage> {
               ),
               // padding: const EdgeInsets.all(12.0),
               child: Text(
-                "Go to full sample",
-                style: TextStyle(color: Colors.white),
+                "CALCULATE",
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white),
               ),
             ),
           ],

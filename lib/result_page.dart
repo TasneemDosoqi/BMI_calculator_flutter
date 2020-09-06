@@ -7,6 +7,12 @@ import 'input_page.dart';
 class ResultPage extends StatelessWidget {
   Color blue = Color(0xff54D1DC);
   Color white = Colors.white;
+  String bmiResult;
+  String resultText;
+  String theInterp;
+  IconData icon;
+
+  ResultPage({this.bmiResult, this.resultText,this.theInterp, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -61,13 +67,14 @@ class ResultPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
+            flex: 2,
             child: ReusableCard(
               chardChild: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Text(
-                      "result",
+                      resultText.toUpperCase(),
                       style: TextStyle(
                       fontSize: 40,
                       color: _textColor(context),
@@ -75,7 +82,7 @@ class ResultPage extends StatelessWidget {
                     ),
                     ),
                     Text(
-                      "180",
+                      bmiResult,
                       style: TextStyle(
                         fontSize: 80,
                         color: _textColor(context),
@@ -88,9 +95,29 @@ class ResultPage extends StatelessWidget {
             ),
           ),
           Expanded(
+            flex: 1,
             child: ReusableCard(
-              chardChild: Center(child: TitleStyle(context, "text")),
+              chardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Icon(
+                    icon,
+                    color: _iconsColor(context),
+                    size: 40,
+                  ),
+                  Center(
+                  child: Text(theInterp
+                  ,style: TextStyle(
+                      fontSize: 20,
+                    //  fontWeight: FontWeight.w400,
+                      color: _textColor(context),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
             ),
+                ],
+              ),
+          ),
           ),
           NeumorphicButton(
             padding: EdgeInsets.symmetric(

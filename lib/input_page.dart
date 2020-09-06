@@ -3,10 +3,10 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/ReusableCard.dart';
 import 'result_page.dart';
+import 'TheBrain.dart';
 
 const Color blue = Color(0xff54D1DC);
 const Color white = Colors.white;
-int seekValue = 140;
 
 class InputPage extends StatefulWidget {
   @override
@@ -22,6 +22,7 @@ class _InputPageState extends State<InputPage> {
   int _selectedIndex = 0;
   int weight =60;
   int age =30;
+  int hieght = 140;
 
   @override
   Widget build(BuildContext context) {
@@ -205,7 +206,7 @@ class _InputPageState extends State<InputPage> {
                         textBaseline: TextBaseline.alphabetic,
                         children: <Widget>[
                           Text(
-                            seekValue.toString(),
+                            hieght.toString(),
                             style: TextStyle(
                               fontSize: 50,
                               color: _textColor(context),
@@ -218,12 +219,12 @@ class _InputPageState extends State<InputPage> {
                     ),
                     NeumorphicSlider(
                         height: 10,
-                        value: seekValue.toDouble(),
+                        value: hieght.toDouble(),
                         min: 80,
                         max: 200,
                         onChanged: (double newValue) {
                           setState(() {
-                            seekValue = newValue.round();
+                            hieght = newValue.round();
                           });
                         }),
                   ],
@@ -299,7 +300,7 @@ class _InputPageState extends State<InputPage> {
                       chardChild: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          TitleStyle(context,"Weight"),
+                          TitleStyle(context,"Age"),
                           Text(
                             age.toString(),
                             style: TextStyle(
@@ -363,7 +364,16 @@ class _InputPageState extends State<InputPage> {
               ),
               margin: EdgeInsets.all(15),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>ResultPage()));
+                Calculator calc= Calculator(height: hieght,weight: weight);
+
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>ResultPage(
+                  bmiResult: calc.calBMI(),
+                  resultText: calc.getResult(),
+                  theInterp: calc.getInterpretation(),
+                    icon : calc.getIcon(),
+                ),
+                ),
+                );
               },
               duration: Duration(microseconds: 1),
               style: NeumorphicStyle(

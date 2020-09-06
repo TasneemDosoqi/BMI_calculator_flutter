@@ -13,6 +13,26 @@ class ResultPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: NeumorphicTheme.baseColor(context),
       appBar: NeumorphicAppBar(
+        actions: <Widget>[
+          NeumorphicButton(
+            margin: EdgeInsets.only(top: 5),
+            onPressed: () {
+              NeumorphicTheme.of(context).themeMode =
+              NeumorphicTheme.isUsingDark(context)
+                  ? ThemeMode.light
+                  : ThemeMode.dark;
+            },
+            style: NeumorphicStyle(
+              shape: NeumorphicShape.flat,
+              boxShape: NeumorphicBoxShape.circle(),
+            ),
+            padding: const EdgeInsets.all(10.0),
+            child: Icon(
+              Icons.wb_sunny,
+              color: _iconsColor(context),
+            ),
+          ),
+        ],
         title: Text(
           'BMI Result',
           style: TextStyle(
@@ -23,10 +43,7 @@ class ResultPage extends StatelessWidget {
         leading: NeumorphicButton(
           margin: EdgeInsets.only(top: 5),
           onPressed: () {
-            NeumorphicTheme.of(context).themeMode =
-                NeumorphicTheme.isUsingDark(context)
-                    ? ThemeMode.light
-                    : ThemeMode.dark;
+            Navigator.pop(context);
           },
           style: NeumorphicStyle(
             shape: NeumorphicShape.flat,
@@ -34,19 +51,46 @@ class ResultPage extends StatelessWidget {
           ),
           padding: const EdgeInsets.all(10.0),
           child: Icon(
-            Icons.wb_sunny,
+            Icons.arrow_back_ios,
             color: _iconsColor(context),
           ),
         ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
-            child: ReusableCard(),
+            child: ReusableCard(
+              chardChild: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Text(
+                      "result",
+                      style: TextStyle(
+                      fontSize: 40,
+                      color: _textColor(context),
+                      fontWeight: FontWeight.w100,
+                    ),
+                    ),
+                    Text(
+                      "180",
+                      style: TextStyle(
+                        fontSize: 80,
+                        color: _textColor(context),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
           Expanded(
-            child: ReusableCard(),
+            child: ReusableCard(
+              chardChild: Center(child: TitleStyle(context, "text")),
+            ),
           ),
           NeumorphicButton(
             padding: EdgeInsets.symmetric(
@@ -63,9 +107,7 @@ class ResultPage extends StatelessWidget {
               color: Color(0xff54D1DC),
               shape: NeumorphicShape.concave,
               boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(15)),
-              // border: NeumorphicBorder(),
             ),
-            // padding: const EdgeInsets.all(12.0),
             child: Text(
               "RECALCULATE",
               style: TextStyle(fontSize: 20, color: Colors.white),

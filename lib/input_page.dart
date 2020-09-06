@@ -35,13 +35,30 @@ class _InputPageState extends State<InputPage> {
             //fontWeight: FontWeight.bold,
           ),
         ),
-        leading: NeumorphicButton(
+        actions: <Widget>[
+          NeumorphicButton(
+            margin: EdgeInsets.only(top: 5),
+            onPressed: () {
+              NeumorphicTheme.of(context).themeMode =
+              NeumorphicTheme.isUsingDark(context)
+                  ? ThemeMode.light
+                  : ThemeMode.dark;
+            },
+            style: NeumorphicStyle(
+              shape: NeumorphicShape.flat,
+              boxShape: NeumorphicBoxShape.circle(),
+            ),
+            padding: const EdgeInsets.all(10.0),
+            child: Icon(
+              Icons.wb_sunny,
+              color: _iconsColor(context),
+            ),
+          ),
+        ],
+        leading:  NeumorphicButton(
           margin: EdgeInsets.only(top: 5),
           onPressed: () {
-            NeumorphicTheme.of(context).themeMode =
-                NeumorphicTheme.isUsingDark(context)
-                    ? ThemeMode.light
-                    : ThemeMode.dark;
+
           },
           style: NeumorphicStyle(
             shape: NeumorphicShape.flat,
@@ -49,7 +66,7 @@ class _InputPageState extends State<InputPage> {
           ),
           padding: const EdgeInsets.all(10.0),
           child: Icon(
-            Icons.wb_sunny,
+            Icons.account_circle,
             color: _iconsColor(context),
           ),
         ),
